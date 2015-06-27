@@ -32,17 +32,12 @@
   <div class="control-group">
     <%= f.label :city_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :city_id, :class => 'form-control' %>
+      <%= f.select :city_id, City.get_cities, :class => 'form-control' %>
     </div>
     <%= error_span(@branch[:city_id]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :user_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :user_id, :class => 'form-control' %>
-    </div>
-    <%= error_span(@branch[:user_id]) %>
-  </div>
+
+<br>
 
 
   <%= f.submit nil, :class => 'btn btn-primary' %>

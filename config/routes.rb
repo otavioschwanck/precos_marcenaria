@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :products
-  resources :branches
+  
+  resources :cities, only: [:index, :show]
+
+  resources :branches do 
+    resources :products
+  end
     get 'home/index'
     root 'home#index'
     devise_for :users, :controllers => {:sessions => "sessions", :registrations => "registrations"}

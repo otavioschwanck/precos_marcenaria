@@ -4,7 +4,7 @@ class BranchesController < ApplicationController
   # GET /branches
   # GET /branches.json
   def index
-    @branches = Branch.all
+    @branches = current_user.branches.all.page(params[:page]).per(20)
   end
 
   # GET /branches/1
@@ -14,7 +14,7 @@ class BranchesController < ApplicationController
 
   # GET /branches/new
   def new
-    @branch = Branch.new
+    @branch = current_user.branches.build
   end
 
   # GET /branches/1/edit
@@ -24,11 +24,11 @@ class BranchesController < ApplicationController
   # POST /branches
   # POST /branches.json
   def create
-    @branch = Branch.new(branch_params)
+    @branch = current_user.branches.build(branch_params)
 
     respond_to do |format|
       if @branch.save
-        format.html { redirect_to @branch, notice: 'Branch was successfully created.' }
+        format.html { redirect_to @branch, notice: 'Filial criada com sucesso.' }
         format.json { render :show, status: :created, location: @branch }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BranchesController < ApplicationController
   def update
     respond_to do |format|
       if @branch.update(branch_params)
-        format.html { redirect_to @branch, notice: 'Branch was successfully updated.' }
+        format.html { redirect_to @branch, notice: 'Filial atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @branch }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class BranchesController < ApplicationController
   def destroy
     @branch.destroy
     respond_to do |format|
-      format.html { redirect_to branches_url, notice: 'Branch was successfully destroyed.' }
+      format.html { redirect_to branches_url, notice: 'Filial deletada com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class BranchesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_branch
-      @branch = Branch.find(params[:id])
+      @branch = current_user.branches.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_branch
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = @branch.products.all.page(params[:page]).per(20)
   end
 
   # GET /products/1
@@ -14,7 +16,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = @branch.products.build
   end
 
   # GET /products/1/edit
@@ -24,11 +26,11 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = @branch.products.build(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to branch_products_path(@branch), notice: 'Produto criado com sucesso.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -42,8 +44,8 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
+        format.html { redirect_to branch_products_path(@branch), notice: 'Produto atualizado com sucesso.' }
+        format.json { render :show, status: :ok, location: [@branch, @product] }
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -56,7 +58,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to branch_products_url(@branch), notice: 'Produto deletado com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +66,11 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = @branch.products.find(params[:id])
+    end
+
+    def set_branch
+      @branch = current_user.branches.find(params[:branch_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

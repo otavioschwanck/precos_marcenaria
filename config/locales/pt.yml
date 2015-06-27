@@ -1,6 +1,7 @@
 ---
 pt:
   helpers:
+    actions: Ações
     links:
       back: Voltar
       edit: Editar
@@ -49,37 +50,24 @@ pt:
 
   activerecord:
     models:
-      user: Usuario
-      room: work
-      user_session: Sessão
-      activity: Atividade
-      entered_in_room: Entrada
+      branch: Filial
+      product: Produto
     errors:
       messages:
         invalid_login: 'Usuário ou senha inválidos'
     attributes:
-      entered_in_room:
-        name: Nome do work
-        pass: Senha do work
-        room_id: work
-      activity:
-        description: Descrição
-        prompt: Vencimento
-      user:
-        bio: Biografia
-        email: Email
-        full_name: Nome completo
-        location: Localização
-        password: Senha
-        password_confirmation: Confirme sua senha
-      room:
-        pass: Senha
+      product:
         name: Nome
-      user_session:
-        email: E-mail
-        password: Senha
-        invalid_login: 'Erro'
-
+        description: Descrição
+        value: Valor 
+        branch_id: Filial 
+        created_at: Data de criação
+        updated_at: Data da ultima atualização
+      branch:
+        name: Nome
+        phone: Telefone para contato
+        city_id: Cidade
+        created_at: Data de criação
   signup:
     confirm_email:
       subject: 'Colcho.net - Confirme seu email'

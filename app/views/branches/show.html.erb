@@ -9,15 +9,17 @@
   <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
   <dd><%= @branch.phone %></dd>
   <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
-  <dd><%= @branch.city_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @branch.user_id %></dd>
+  <dd><%= "#{@branch.city.name} - #{@branch.city.state.acronym}" %></dd>
+  <dt>Numero de produtos:</strong></dt>
+  <dd><%= @branch.products.count %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               branches_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_branch_path(@branch), :class => 'btn btn-default' %>
+<%= link_to "Gerenciar produtos",
+              branch_products_path(@branch), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               branch_path(@branch),
               :method => 'delete',
