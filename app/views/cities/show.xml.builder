@@ -8,6 +8,7 @@ xml.products do
           xml.name product.name
           xml.description product.description
           xml.value product.value
+          xml.last_update product.updated_at
         end
       end
     end
