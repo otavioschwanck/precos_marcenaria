@@ -1,28 +1,27 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application has made for college.  It's a web service made in RoR for enterprises who sell woodwork equipaments.  They record yours products and branches, and the woodwork owner can see the avaiable products in your city.    
 
 Things you may want to cover:
 
 * Ruby version
-
+  Ruby 2.1.5
 * System dependencies
-
+  - Linux or Mac
+  - Ruby on Rails and some gems
+  - Postgresql
 * Configuration
+  - Run Bundle install
+  - Run rake db:create db:migrate db:seed
+  - Enjoy with rails s
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
+  - Download heroku (Follow the instructions to login)
+  * in terminal:
+  1 - Heroku create
+  2 - git add . & git commit -m "My First Commit"
+  3 - git push heroku master
+  4 - heroku open
 * ...
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
