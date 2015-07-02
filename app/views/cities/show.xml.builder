@@ -11,7 +11,8 @@ xml.products do
           xml.last_update product.updated_at
           xml.branch_name product.branch.name
           xml.branch_phone product.branch.phone
-          xml.image product.imagem.url
+          
+          xml.image request.host + product.imagem.url
         end
       end
     end
