@@ -18,10 +18,10 @@ Things you may want to cover:
 
 * Deployment instructions
   - Download heroku (Follow the instructions to login)
-  - in terminal:
-  1 - Heroku create
-  2 - git add . & git commit -m "My First Commit"
-  3 - git push heroku master
-  4 - heroku open
+  -- in terminal:
+  - Heroku create
+  - git add . & git commit -m "My First Commit"
+  - git push heroku master
+  - heroku open
 
 
