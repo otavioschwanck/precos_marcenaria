@@ -37,6 +37,14 @@
     <%= error_span(@product[:value]) %>
   </div>
 
+  <div class="control-group">
+    <%= f.label :imagem, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :imagem, :class => 'form-control' %>
+    </div>
+    <%= error_span(@product[:imagem]) %>
+  </div>
+
 <br>
 
 
